@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>Rota-Eng360</title>
+
+    <!-- FONTE -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --azul: #0d47a1;
+            --laranja: #f57c00;
+            --bege: #f8f6f2;
+            --texto: #333;
+            --sombra: rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background: var(--bege);
+            color: var(--texto);
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: linear-gradient(90deg, var(--azul), var(--laranja));
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: white;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 100px 20px;
+            text-align: center;
+            background: #e3f2fd;
+            /* leve contraste */
+            border-bottom-left-radius: 50% 10%;
+            border-bottom-right-radius: 50% 10%;
+            box-shadow: 0 8px 25px var(--sombra);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            color: var(--azul);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+        }
+
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* CAROUSEL */
+        .carousel-container {
+            max-width: 900px;
+            margin: 60px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px var(--sombra);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+
+        .carousel img {
+            width: 100%;
+            flex-shrink: 0;
+            object-fit: cover;
+            height: 450px;
+        }
+
+        /* DOTS */
+        .dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--laranja);
+        }
+
+        /* SECTION */
+        .section {
+            padding: 30px 20px;
+            max-width: 1000px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .section h2 {
+            color: var(--azul);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            font-size: 1.1rem;
+        }
+
+        /* "ÉS ALUNO?" SECTION */
+        .aluno-nao {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .aluno-nao button {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .aluno-nao button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px var(--sombra);
+        }
+
+        .aluno-btn {
+            background: var(--azul);
+            color: white;
+        }
+
+        .nao-btn {
+            background: var(--laranja);
+            color: white;
+        }
+
+        /* CTA */
+        .cta button {
+            padding: 18px 40px;
+            border: none;
+            border-radius: 15px;
+            background: var(--laranja);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .cta button:hover {
+            background: #e06f00;
+            transform: scale(1.05);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.95rem;
+            color: #666;
+            background: #f1f1f1;
+            margin-top: 60px;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .aluno-nao {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .carousel img {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-left">
+            <img src="/assets/rota-logo.png" alt="Logo" class="logo-img">
+            <span class="logo-text" onclick="location.href='index.html'">Rota-Eng360</span>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero reveal">
+        <h1>Constrói o teu caminho na engenharia</h1>
+        <p>
+            A Rota Eng360 é uma iniciativa que ajuda estudantes de engenharia no seu desenvolvimento académico e
+            pessoal, promovendo uma visão ampla, prática e consciente da formação universitária.
+
+            <!-- CAROUSEL -->
+        <section class="reveal">
+            <div class="carousel-container">
+                <div class="carousel" id="carousel">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216" alt="">
+                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998" alt="">
+                </div>
+            </div>
+            <div class="dots" id="dots"></div>
+        </section>
+
+        <section class="section reveal">
+            <h2>O que você vai encontrar?</h2>
+            <p>
+
+                Conteúdos sobre vida acadêmica e aprendizagem universitária
+                Exploração das diferentes áreas das engenharias
+                Orientação sobre organização, foco e disciplina nos estudos
+                Atividades, palestras e momentos de conexão
+                Uma comunidade focada em crescimento e partilha de experiências.
+            </p>
+        </section>
+
+        <section class="section reveal">
+            <h2>O que a Rota Eng360 agrega!</h2>
+            <p>
+                A Rota Eng360 ajuda você a ganhar clareza sobre o seu caminho, desenvolver autonomia intelectual e
+                compreender melhor como o aprendizado acadêmico se relaciona com o mundo real. O foco está em construir
+                bases sólidas para decisões mais conscientes e trajetórias mais consistentes.
+            </p>
+        </section>
+
+        <!-- SEÇÃO "ÉS ALUNO?" -->
+        <section class="section reveal">
+            <h2>És aluno ou não?</h2>
+            <div class="aluno-nao">
+                <button class="aluno-btn" onclick="location.href='aluno.html'">Sou Aluno</button>
+                <button class="nao-btn" onclick="location.href='nao-aluno.html'">Não Sou Aluno</button>
+            </div>
+        </section>
+
+        <!-- Outras formas de contacto" -->
+
+        <section class="section reveal">
+            <h2>Outras formas de contacto!</h2>
+            <p>
+                Para sua comodidade, estamos disponíveis através de vários canais.
+                Pode entrar em contacto connosco via
+                <a href="https://chat.whatsapp.com/KgFCbOmuJKj2D6PpFgao66?mode=gi_t" target="_blank">WhatsApp</a>,
+                <a href="https://www.instagram.com/rota_eng360" target="_blank">Instagram</a>
+                ou diretamente pelo terminal da Unitel
+                <a href="tel:+244937255243">(+244 937 255 243)</a>.
+                Escolha a opção que lhe for mais prática — teremos todo o gosto em atendê-lo.
+            </p>
+        </section>
+
+
+        <!-- SECTION EXPLICATIVA -->
+
+        <footer>
+            © 2026 Rota-Eng360 · Todos os direitos reservados
+        </footer>
+
+        <script>
+            /* SCROLL REVEAL */
+            function revealOnScroll() {
+                document.querySelectorAll('.reveal').forEach(el => {
+                    const top = el.getBoundingClientRect().top;
+                    if (top < window.innerHeight - 80) el.classList.add('active');
+                });
+            }
+
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+
+            /* CAROUSEL */
+            const carousel = document.getElementById('carousel');
+            const dotsContainer = document.getElementById('dots');
+            const slides = carousel.children;
+            let index = 0;
+
+            for (let i = 0; i < slides.length; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => moveToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+
+            function moveToSlide(i) {
+                index = i;
+                carousel.style.transform = `translateX(-${i * 100}%)`;
+                document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+                dotsContainer.children[i].classList.add('active');
+            }
+
+            setInterval(() => moveToSlide((index + 1) % slides.length), 4500);
+        </script>
+
+</body>
+
+</html>

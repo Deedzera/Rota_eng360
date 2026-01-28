@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>Inscrição Aluno | Rota-Eng360</title>
+
+    <style>
+        :root {
+            --azul: #0d47a1;
+            --laranja: #f57c00;
+            --bege: #f8f6f2;
+            --texto: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: var(--bege);
+            color: var(--texto);
+        }
+
+        nav {
+            background: linear-gradient(90deg, var(--azul), var(--laranja));
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            color: var(--azul);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        label {
+            font-weight: 500;
+        }
+
+        input,
+        select {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--laranja);
+        }
+
+        button {
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: var(--laranja);
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        }
+
+        .alert-success {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            z-index: 1000;
+        }
+
+        /* Mostrar o alert */
+        .alert-success.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        button:hover {
+            background: #e06f00;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px var(--sombra);
+
+        }
+
+        .privacidade {
+            font-size: 0.85rem;
+            text-align: center;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        @media(max-width:600px) {
+            .container {
+                padding: 20px;
+                margin: 30px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="success-alert" class="alert-success">
+        ✅ Inscrição enviada com sucesso!
+    </div>
+
+    <nav>
+        <div class="nav-left">
+            <img src="/assets/rota-logo.png" alt="Logo" class="logo-img">
+            <span class="logo-text" onclick="location.href='index.html'">Rota-Eng360</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Inscrição – Aluno</h2>
+        <form action="https://formsubmit.co/rota.eng360@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://chat.whatsapp.com/KgFCbOmuJKj2D6PpFgao66?mode=gi_t">
+            <input type="hidden" name="_subject" value="Nova Inscrição - Aluno">
+
+            <label>Nome completo</label>
+            <input type="text" name="nome" placeholder="Ex: Fernando Medeiros" required>
+
+            <label>Curso</label>
+            <select name="curso" required>
+                <option value="" disabled selected>Seleciona a tua engenharia</option>
+                <option value="Engenharia Informática">Engenharia Informática</option>
+                <option value="Engenharia Civil">Engenharia Civil</option>
+                <option value="Engenharia Eléctrica">Engenharia Eléctrica</option>
+                <option value="Engenharia Química">Engenharia Química</option>
+                <option value="Engenharia de Minas">Engenharia de Minas</option>
+                <option value="Engenharia de Telecomunicações">Engenharia de Telecomunicações</option>
+            </select>
+
+            <label>Ano de frequência</label>
+            <select name="ano" required>
+                <option value="" disabled selected>Seleciona o ano</option>
+                <option value="1º Ano">1º Ano</option>
+                <option value="2º Ano">2º Ano</option>
+                <option value="3º Ano">3º Ano</option>
+                <option value="4º Ano">4º Ano</option>
+                <option value="5º Ano">5º Ano</option>
+            </select>
+
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Ex: fernando@email.com" required>
+
+            <label>Telemóvel</label>
+            <input type="tel" name="telemovel" placeholder="(+244) 923000000" pattern="9[0-9]{8}" required>
+
+            <button type="submit">Enviar inscrição</button>
+
+            <p class="privacidade">
+                Os teus dados serão usados apenas para fins relacionados com a Rota-Eng360.
+            </p>
+        </form>
+    </div>
+
+    <script>
+        // Seleciona o formulário
+        const form = document.querySelector("form");
+        const alertBox = document.getElementById("success-alert");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault(); // Previne envio padrão para podermos mostrar o alert
+
+            // Mostra o alert
+            alertBox.classList.add("show");
+
+            // Depois de 3 segundos, remove o alert
+            setTimeout(() => {
+                alertBox.classList.remove("show");
+                // Se quiseres, envia o formulário de verdade depois do alert
+                form.submit();
+            }, 3000);
+        });
+    </script>
+</body>
+
+</html>
