@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-PT">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sobre a Eng360</title>
+    <link rel="icon" type="image/png" href="Assets/rota-logo.png">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#dc7a1e",
+                        "secondary-blue": "#082939",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#211911",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .geometric-overlay {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+        }
+
+        body {
+            min-height: max(884px, 100dvh);
+        }
+
+        /* Scroll Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered Delays */
+        .delay-100 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-200 {
+            transition-delay: 0.2s;
+        }
+
+        .delay-300 {
+            transition-delay: 0.3s;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Navigation Bar (iOS Style) -->
+        <nav
+            class="sticky top-0 z-50 relative flex items-center justify-between px-4 py-3 ios-blur bg-background-light/80 dark:bg-background-dark/80 border-b border-gray-200 dark:border-gray-800">
+            <a href="index.html" class="flex items-center text-primary z-10">
+                <span class="material-symbols-outlined">chevron_left</span>
+                <span class="text-lg font-medium">Voltar</span>
+            </a>
+            <h1
+                class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-bold tracking-tight whitespace-nowrap">
+                Sobre a Eng360</h1>
+            <button class="text-primary active:scale-95 transition-transform z-10" id="share-btn">
+                <span class="material-symbols-outlined">share</span>
+            </button>
+        </nav>
+        <!-- Hero Section -->
+        <header class="relative w-full @container reveal">
+            <div class="relative h-80 w-full overflow-hidden geometric-overlay bg-secondary-blue">
+                <div class="absolute inset-0 bg-cover bg-center opacity-60"
+                    data-alt="Modern engineering facility with advanced robotic equipment"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBlA83fL5HDVhyaQL_sgDVxT6wX_1yhEL8g_y8M2CwWRyRouvfX1krGgesU9loZtJJxLkjzTn0r0rQWsFqOUS0nHeDtLIb4TyQEOmqURpJoNbBYYC9TMW58bo98oBNoK92pACfzSa3puCY9r6t0Z26odDNTolK8QtnZfk2U_mvGGwhBvXnGwJ_QApsTYW266M3waFM-Y5pcHYF_JGcElZFltJiiMVlIKW-HSTVcncZb3Me09JMFkXJcwZJ9qvHKtB2PifUO6ql7Qyw');">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-secondary-blue via-transparent to-transparent"></div>
+                <div class="absolute bottom-12 left-6 right-6">
+                    <span
+                        class="bg-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-white mb-3 inline-block">A
+                        Iniciativa</span>
+                    <h2 class="text-4xl font-bold leading-tight text-white">Clareza, Autonomia e Realidade</h2>
+                </div>
+            </div>
+        </header>
+        <!-- Mission Section -->
+        <section class="px-6 py-8 reveal">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-1 bg-primary rounded-full"></div>
+                <h3 class="text-xl font-bold uppercase tracking-wider text-primary">O Que Agregamos</h3>
+            </div>
+            <p class="text-lg leading-relaxed dark:text-gray-300">
+                A Rota Eng360 ajuda você a ganhar clareza sobre o seu caminho, desenvolver autonomia intelectual e
+                compreender melhor como o aprendizado acadêmico se relaciona com o mundo real. O foco está em construir
+                bases sólidas para decisões mais conscientes e trajetórias mais consistentes.
+            </p>
+        </section>
+        <!-- Stats Grid -->
+        <section class="px-6 py-4 reveal">
+            <div class="grid grid-cols-3 gap-4">
+                <div class="bg-secondary-blue/10 dark:bg-secondary-blue/40 p-4 rounded-lg border-l-4 border-primary">
+                    <p class="text-primary font-bold text-2xl">100+</p>
+                    <p class="text-xs font-medium uppercase text-slate-500 dark:text-slate-400">Estudantes</p>
+                </div>
+                <div class="bg-secondary-blue/10 dark:bg-secondary-blue/40 p-4 rounded-lg border-l-4 border-primary">
+                    <p class="text-primary font-bold text-2xl">2+</p>
+                    <p class="text-xs font-medium uppercase text-slate-500 dark:text-slate-400">Projetos</p>
+                </div>
+                <div class="bg-secondary-blue/10 dark:bg-secondary-blue/40 p-4 rounded-lg border-l-4 border-primary">
+                    <p class="text-primary font-bold text-2xl">4+</p>
+                    <p class="text-xs font-medium uppercase text-slate-500 dark:text-slate-400">Parceiros</p>
+                </div>
+            </div>
+        </section>
+        <!-- Core Pillars -->
+        <section class="px-6 py-8 bg-secondary-blue/5 dark:bg-white/5 my-6 reveal">
+            <h3 class="text-2xl font-bold mb-6">O Que Vais Encontrar</h3>
+            <div class="space-y-6">
+                <!-- Pillar 1 -->
+                <div class="reveal delay-100 flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-3xl">auto_stories</span>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold">Vida Académica e Organização</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Conteúdos sobre aprendizagem universitária
+                            e orientação sobre organização, foco e disciplina nos estudos.</p>
+                    </div>
+                </div>
+                <!-- Pillar 2 -->
+                <div class="reveal delay-200 flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-3xl">explore</span>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold">Exploração e Realidade</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Exploração das diferentes áreas das
+                            engenharias e conexão entre a teoria e o mundo real.</p>
+                    </div>
+                </div>
+                <!-- Pillar 3 -->
+                <div class="reveal delay-300 flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-3xl">diversity_3</span>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold">Comunidade e Conexão</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Atividades, palestras e uma comunidade
+                            focada em crescimento e partilha de experiências.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Project Spotlight -->
+        <section class="px-6 py-4 reveal">
+            <h3 class="text-2xl font-bold mb-4">Dentro da Eng360</h3>
+            <div class="relative rounded-xl overflow-hidden aspect-video group">
+                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    data-alt="Engineering students and professionals in a mentorship session"
+                    src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1000&auto=format&fit=crop" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+                    <div>
+                        <p class="text-white font-bold">Mentoria e Networking</p>
+                        <p class="text-white/70 text-sm">Conexão real entre estudantes e profissionais</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact/Footer -->
+        <section class="px-6 py-10 mt-6 border-t border-gray-200 dark:border-gray-800 text-center reveal">
+            <h4 class="text-lg font-bold mb-2">Pronto para Começar?</h4>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Junte-se a uma comunidade que molda o futuro da
+                engenharia.</p>
+            <div class="flex flex-col gap-3">
+                <a href="registration.html"
+                    class="block text-center bg-primary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+                    Participar na Iniciativa
+                </a>
+                <!-- <button
+                    class="bg-transparent border-2 border-primary text-primary font-bold py-4 rounded-xl active:scale-95 transition-transform">
+                    Contacte-nos
+                </button> -->
+            </div>
+            <div class="flex justify-center gap-6 mt-10 items-center text-slate-400">
+                <a href="https://wa.me/244937255243?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20Rota360." target="_blank"
+                    class="hover:text-primary transition-colors">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                </a>
+                <a href="mailto:rota.eng360@gmail.com@gmail.com" class="hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-2xl">mail</span>
+                </a>
+                <a href="tel:+244937255243" class="hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-2xl">phone</span>
+                </a>
+            </div>
+            <p class="mt-8 text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-600 font-bold">
+                © 2026 Rota Eng360. Todos os Direitos Reservados.
+            </p>
+        </section>
+        <!-- iOS Bottom Safe Area Spacer -->
+        <div class="h-8"></div>
+    </div>
+
+    <script>
+        document.getElementById('share-btn').addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                // Visual feedback (optional but good UX)
+                const originalIcon = document.querySelector('#share-btn span').innerHTML;
+                document.querySelector('#share-btn span').innerHTML = 'check';
+                setTimeout(() => {
+                    document.querySelector('#share-btn span').innerHTML = originalIcon;
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+            }
+        });
+
+        // Scroll Animation Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-PT">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/png" href="Assets/rota-logo.png">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#dc7b1e",
+                        "brand-blue": "#082939",
+                        "off-white": "#e8e7de",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#082939",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Space Grotesk', sans-serif;
+                min-height: max(884px, 100dvh);
+            }
+        }
+        .blueprint-grid {
+            background-image: radial-gradient(rgba(220, 123, 30, 0.1) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .glow-button {
+            box-shadow: 0 0 20px rgba(220, 123, 30, 0.5);
+        }/* Toggle Slider Logic */
+        .toggle-container { position: relative; }
+        .glider {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            height: calc(100% - 8px);
+            width: calc(50% - 6px);
+            background-color: #dc7b1e;
+            border-radius: 0.5rem;
+            transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            z-index: 1;
+            pointer-events: none;
+            box-shadow: 0 4px 6px -1px rgba(220, 123, 30, 0.4);
+        }
+        
+        #student-trigger:checked ~ div .toggle-container .glider { transform: translateX(0); }
+        #professional-trigger:checked ~ div .toggle-container .glider { transform: translateX(100%) translateX(4px); }
+
+        /* Label Styling Updates */
+        .toggle-label { z-index: 2; position: relative; transition: color 0.3s; }
+        #student-trigger:checked ~ div .toggle-container #student-label { color: white; font-weight: 700; }
+        #professional-trigger:checked ~ div .toggle-container #professional-label { color: white; font-weight: 700; }
+        #student-trigger:checked ~ div .toggle-container #professional-label { @apply text-slate-500 dark:text-off-white/50; }
+        #professional-trigger:checked ~ div .toggle-container #student-label { @apply text-slate-500 dark:text-off-white/50; }
+
+        /* Form Slide Logic */
+        .forms-mask { overflow: hidden; width: 100%; }
+        .forms-track { 
+            display: flex; 
+            width: 200%; 
+            transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1); 
+        }
+        .form-section { width: 50%; flex-shrink: 0; }
+        
+        #student-trigger:checked ~ .forms-mask .forms-track { transform: translateX(0); }
+        #professional-trigger:checked ~ .forms-mask .forms-track { transform: translateX(-50%); }
+        
+        #student-trigger:checked ~ #student-fields,
+        #professional-trigger:checked ~ #professional-fields { display: flex; } /* Logic replaced by slide */
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-off-white min-h-screen">
+    <div
+        class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden blueprint-grid">
+        <input checked="" class="hidden" id="student-trigger" name="form_type" type="radio" />
+        <input class="hidden" id="professional-trigger" name="form_type" type="radio" />
+        <div
+            class="flex items-center p-4 pb-2 justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10">
+            <a href="index.html"
+                class="text-primary flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </a>
+            <h2
+                class="text-slate-900 dark:text-off-white text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">
+                Inscrição</h2>
+        </div>
+        <div class="px-4 py-4">
+            <div
+                class="relative w-full rounded-xl overflow-hidden min-h-[160px] bg-slate-800 flex flex-col justify-end p-6 border border-primary/20 shadow-2xl">
+                <div class="absolute inset-0 opacity-40 bg-center bg-cover"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC6fbIetWtIQjkfMNGWJ4yoA86QWB2OCKql37lboYtDkwjMKaA_lUHqoprCmympW7MSEe2ptPqSC-Xwe5N0m9Hp3FwYiuV78brS5dHFrL9BHSHw40wSKUX5wRAyc_EqT7z05WrTsaUfuTc74p9UA4wClGUkeMO3D8U1KLn43jIuiA8Ky98lTtYlk5hPxhFzgxhBukMf_sj6wVOiLA7UDJ_8jKiHMKcJSNbLmhfhd9PzZLg7N_sudDzxXHRlWZzvB5LtS2ajuktlN6M')">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-blue to-transparent"></div>
+                <div class="relative z-10">
+                    <h1 class="text-white text-3xl font-bold leading-tight">Rota Eng360</h1>
+                    <p class="text-primary font-medium text-sm tracking-widest uppercase">Excelência em Engenharia</p>
+                </div>
+            </div>
+        </div>
+        <div class="px-6 py-2">
+            <h2 class="text-slate-900 dark:text-off-white text-2xl font-bold leading-tight">Crie o seu perfil</h2>
+            <p class="text-slate-500 dark:text-off-white/60 text-sm mt-1">Junte-se ao nosso ecossistema profissional de
+                engenharia.
+            </p>
+        </div>
+        <div class="px-6 py-4">
+            <div
+                class="toggle-container flex h-12 w-full items-center justify-center rounded-xl bg-slate-200 dark:bg-slate-800/50 p-1 border border-slate-300 dark:border-white/10 relative">
+                <div class="glider"></div>
+                <label
+                    class="toggle-label flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2"
+                    for="student-trigger" id="student-label">
+                    <span class="truncate text-sm">Estudante</span>
+                </label>
+                <label
+                    class="toggle-label flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2"
+                    for="professional-trigger" id="professional-label">
+                    <span class="truncate text-sm">Outro</span>
+                </label>
+            </div>
+        </div>
+        <div class="forms-mask">
+            <div class="forms-track">
+                <!-- Student Form -->
+                <form class="form-section flex flex-col gap-5 px-6 pb-10" id="student-fields"
+                    action="https://formsubmit.co/ajax/rota.eng360@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="Novo Registo de Estudante">
+                    <input type="hidden" name="_next"
+                        value="https://chat.whatsapp.com/KmPONEmCwODDx11Uv9gP1g?mode=gi_c">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <div class="flex flex-col gap-1.5">
+                        <label
+                            class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-off-white/40 ml-1">Nome
+                            Completo</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">person</span>
+                            <input
+                                class="w-full h-14 pl-12 pr-4 rounded-xl bg-white dark:bg-slate-800/30 border border-slate-300 dark:border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white text-slate-900 placeholder:text-slate-400 dark:placeholder:text-white/20"
+                                placeholder="Fernando Medeiros" type="text" name="Nome" required />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label
+                            class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-off-white/40 ml-1">Curso</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg z-10 pointer-events-none">engineering</span>
+                            <select
+                                class="w-full h-14 pl-12 pr-10 rounded-xl bg-white dark:bg-slate-800/30 border border-slate-300 dark:border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none transition-all dark:text-white text-slate-900"
+                                name="Curso" required>
+                                <option disabled="" selected="" value="">Selecione o seu curso de engenharia</option>
+                                <option value="Engenharia Informática">Engenharia Informática</option>
+                                <option value="Engenharia Civil">Engenharia Civil</option>
+                                <option value="Engenharia Eléctrica">Engenharia Eléctrica</option>
+                                <option value="Engenharia Química">Engenharia Química</option>
+                                <option value="Engenharia de Minas">Engenharia de Minas</option>
+                                <option value="Engenharia de Telecomunicações">Engenharia Industrial</option>
+                                <option value="Engenharia de Telecomunicações">Engenharia de Telecomunicações</option>
+                            </select>
+                            <span
+                                class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label
+                            class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-off-white/40 ml-1">Ano
+                            de frequência</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg z-10 pointer-events-none">calendar_today</span>
+                            <select
+                                class="w-full h-14 pl-12 pr-10 rounded-xl bg-white dark:bg-slate-800/30 border border-slate-300 dark:border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none transition-all dark:text-white text-slate-900"
+                                name="Ano" required>
+                                <option disabled="" selected="" value="">Selecione o ano atual</option>
+                                <option>1º Ano</option>
+                                <option>2º Ano</option>
+                                <option>3º Ano</option>
+                                <option>4º Ano</option>
+                                <option>5º Ano</option>
+                            </select>
+                            <span
+                                class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label
+                            class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-off-white/40 ml-1">Endereço
+                            de
+                            Email</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">mail</span>
+                            <input
+                                class="w-full h-14 pl-12 pr-4 rounded-xl bg-white dark:bg-slate-800/30 border border-slate-300 dark:border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white text-slate-900 placeholder:text-slate-400 dark:placeholder:text-white/20"
+                                placeholder="seuemail@google.com" type="email" name="Email" required />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label
+                            class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-off-white/40 ml-1">Número
+                            de
+                            Telefone</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">phone_iphone</span>
+                            <input
+                                class="w-full h-14 pl-12 pr-4 rounded-xl bg-white dark:bg-slate-800/30 border border-slate-300 dark:border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white text-slate-900 placeholder:text-slate-400 dark:placeholder:text-white/20"
+                                placeholder="+244 000 000 000" type="tel" name="Telemóvel" />
+                        </div>
+                    </div>
+                    <div class="pt-4">
+                        <button
+                            class="w-full h-16 bg-primary text-white font-bold rounded-xl text-lg flex items-center justify-center gap-2 glow-button active:scale-[0.98] transition-all duration-200">
+                            <span>Finalizar Registo</span>
+                            <span class="material-symbols-outlined">rocket_launch</span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Professional Form -->
+                <form class="form-section flex flex-col gap-5 px-6 pb-10" id="professional-fields"
+                    action="https://formsubmit.co/ajax/rota.eng360@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="Novo Registo Não Estudante">
+                    <input type="hidden" name="_next"
+                        value="https://chat.whatsapp.com/KmPONEmCwODDx11Uv9gP1g?mode=gi_c">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <div class="flex flex-col gap-1.5">
+                        <label
+                            class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-off-white/40 ml-1">Nome
+                            Completo</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">person</span>
+                            <input
+                                class="w-full h-14 pl-12 pr-4 rounded-xl bg-white dark:bg-slate-800/30 border border-slate-300 dark:border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white text-slate-900 placeholder:text-slate-400 dark:placeholder:text-white/20"
+                                placeholder="Fernando Medeiros" type="text" name="Nome" required />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label
+                            class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-off-white/40 ml-1">Profissão</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">work</span>
+                            <input
+                                class="w-full h-14 pl-12 pr-4 rounded-xl bg-white dark:bg-slate-800/30 border border-slate-300 dark:border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white text-slate-900 placeholder:text-slate-400 dark:placeholder:text-white/20"
+                                placeholder="Engenharia de Software" type="text" name="Ocupação" required />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label
+                            class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-off-white/40 ml-1">Endereço
+                            de
+                            Email</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">mail</span>
+                            <input
+                                class="w-full h-14 pl-12 pr-4 rounded-xl bg-white dark:bg-slate-800/30 border border-slate-300 dark:border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white text-slate-900 placeholder:text-slate-400 dark:placeholder:text-white/20"
+                                placeholder="seuemail@gmail.com" type="email" name="Email" required />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label
+                            class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-off-white/40 ml-1">Número
+                            de
+                            Telefone</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">phone_iphone</span>
+                            <input
+                                class="w-full h-14 pl-12 pr-4 rounded-xl bg-white dark:bg-slate-800/30 border border-slate-300 dark:border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white text-slate-900 placeholder:text-slate-400 dark:placeholder:text-white/20"
+                                placeholder="+244 000 000 000" type="tel" name="Telemóvel" />
+                        </div>
+                    </div>
+                    <div class="pt-4">
+                        <button
+                            class="w-full h-16 bg-primary text-white font-bold rounded-xl text-lg flex items-center justify-center gap-2 glow-button active:scale-[0.98] transition-all duration-200">
+                            <span>Finalizar Registo</span>
+                            <span class="material-symbols-outlined">rocket_launch</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="fixed bottom-0 right-0 -z-0 opacity-10 pointer-events-none">
+            <svg fill="none" height="200" viewBox="0 0 100 100" width="200" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 0L93.3013 25V75L50 100L6.69873 75V25L50 0Z" stroke="#dc7b1e" stroke-width="1"></path>
+                <path d="M50 20L75.9808 35V65L50 80L24.0192 65V35L50 20Z" stroke="#dc7b1e" stroke-width="0.5"></path>
+            </svg>
+        </div>
+
+        <footer class="px-6 py-8 mt-auto border-t border-gray-200 dark:border-gray-800 text-center relative z-10">
+            <div class="flex justify-center gap-6 items-center text-slate-400">
+                <a href="https://chat.whatsapp.com/KmPONEmCwODDx11Uv9gP1g?mode=gi_c" target="_blank"
+                    class="hover:text-primary transition-colors">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                </a>
+                <a href="mailto:rota.eng360@gmail.com" class="hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-2xl">mail</span>
+                </a>
+                <a href="tel:+244937255243" class="hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-2xl">phone</span>
+                </a>
+            </div>
+            <p class="mt-8 text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-600 font-bold">
+                © 2026 Rota Eng360. Todos os Direitos Reservados.
+            </p>
+        </footer>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center px-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div
+            class="relative bg-white dark:bg-slate-800 rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300">
+            <button id="close-modal-btn"
+                class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div
+                class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="material-symbols-outlined text-green-600 dark:text-green-400 text-3xl">check_circle</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Inscrição Confirmada!</h3>
+            <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Estamos a redirecionar para o grupo do WhatsApp...
+            </p>
+            <div class="w-full bg-slate-200 dark:bg-slate-700 h-1 rounded-full overflow-hidden">
+                <div class="h-full bg-green-500 animate-[progress_3s_linear_forwards]"></div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes progress {
+            from {
+                width: 0%;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        #success-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #success-modal.active>div:nth-child(2) {
+            transform: scale(100%);
+        }
+    </style>
+
+    <script>
+        const forms = document.querySelectorAll('form');
+        const modal = document.getElementById('success-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        forms.forEach(form => {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const btn = form.querySelector('button');
+                const originalText = btn.innerHTML;
+
+                // Loading state
+                btn.disabled = true;
+                btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> A enviar...';
+
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Show modal
+                            modal.classList.add('active');
+
+                            // Redirect after 3s
+                            setTimeout(() => {
+                                window.location.href = "https://chat.whatsapp.com/KmPONEmCwODDx11Uv9gP1g?mode=gi_c";
+                            }, 3000);
+                        } else {
+                            alert("Ocorreu um erro. Por favor tente novamente.");
+                            btn.disabled = false;
+                            btn.innerHTML = originalText;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert("Ocorreu um erro de conexão.");
+                        btn.disabled = false;
+                        btn.innerHTML = originalText;
+                    });
+            });
+        });
+    </script>
+</body>
+
+</html>

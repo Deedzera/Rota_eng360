@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-PT">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Início Eng360</title>
+    <link rel="icon" type="image/png" href="Assets/rota-logo.png">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#dc7b1e",
+                        "secondary": "#082939",
+                        "accent-light": "#e8e7de",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#171411",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .glow-effect {
+            box-shadow: 0 0 15px rgba(220, 123, 30, 0.4);
+        }
+        .hero-mesh {
+            background-image: linear-gradient(30deg, #082939 12%, transparent 12.5%, transparent 87%, #082939 87.5%, #082939),
+                              linear-gradient(150deg, #082939 12%, transparent 12.5%, transparent 87%, #082939 87.5%, #082939),
+                              linear-gradient(30deg, #082939 12%, transparent 12.5%, transparent 87%, #082939 87.5%, #082939),
+                              linear-gradient(150deg, #082939 12%, transparent 12.5%, transparent 87%, #082939 87.5%, #082939),
+                              linear-gradient(60deg, #dc7b1e22 25%, transparent 25.5%, transparent 75%, #dc7b1e22 75%, #dc7b1e22),
+                              linear-gradient(60deg, #dc7b1e22 25%, transparent 25.5%, transparent 75%, #dc7b1e22 75%, #dc7b1e22);
+            background-size: 80px 140px;
+            background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+
+        /* Scroll Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered Delays */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
+    <header
+        class="sticky top-0 z-50 w-full border-b border-primary/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="flex items-center justify-between px-4 py-3">
+            <div class="flex items-center gap-2">
+                <div
+                    class="text-primary flex items-center justify-center h-10 w-10 overflow-hidden rounded-full border border-primary/20">
+                    <img src="Assets/rota-logo.png" alt="Rota Eng360 Logo" class="h-full w-full object-cover" />
+                </div>
+                <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Eng360</h1>
+            </div>
+            <a href="sobre.html"
+                class="px-4 py-1.5 rounded-full border border-primary/30 text-primary text-sm font-semibold hover:bg-primary/10 transition-colors">
+                Sobre
+            </a>
+        </div>
+    </header>
+    <main class="relative">
+        <section
+            class="reveal relative overflow-hidden bg-secondary min-h-[440px] flex items-center justify-center px-6 py-12">
+            <div class="absolute inset-0 hero-mesh opacity-40"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/50 to-background-dark"></div>
+            <div class="relative z-10 text-center max-w-md mx-auto flex flex-col items-center">
+                <div
+                    class="mb-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    <span class="text-[10px] uppercase tracking-widest text-primary font-bold">Hub de Inovação</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold leading-[1.1] mb-4 text-white">
+                    Constrói a tua <span class="text-primary">Trajetória</span>
+                </h2>
+                <p class="text-accent-light/80 text-base font-light mb-8 max-w-[280px] leading-relaxed">
+                    Ganha clareza, autonomia e visão prática da tua formação em engenharia.
+                </p>
+                <div class="flex justify-center w-full">
+                    <a href="registration.html"
+                        class="glow-effect w-full max-w-[240px] bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-3 transition-all active:scale-95">
+                        <span class="material-symbols-outlined">bolt</span>
+                        INSCREVER AGORA
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="px-4 py-10 reveal">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-bold dark:text-white">O Que Encontras</h3>
+                <div class="h-[2px] flex-1 ml-4 bg-primary/20"></div>
+            </div>
+            <div class="grid grid-cols-1 gap-6">
+                <div
+                    class="reveal delay-100 group relative overflow-hidden rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 p-1">
+                    <div class="aspect-video w-full rounded-lg overflow-hidden relative">
+                        <img alt="Connect Section - Informatics"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span
+                                class="px-2 py-1 bg-primary text-[10px] font-bold text-white rounded uppercase tracking-wider">Passo
+                                01</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-bold mb-1 dark:text-white flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">auto_stories</span>
+                            Vida Académica
+                        </h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Organização, foco e disciplina para
+                            dominar os teus estudos universitários.</p>
+                    </div>
+                </div>
+                <div
+                    class="reveal delay-200 group relative overflow-hidden rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 p-1">
+                    <div class="aspect-video w-full rounded-lg overflow-hidden relative">
+                        <img alt="Learn Section - Chemical Engineering"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1000&auto=format&fit=crop" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span
+                                class="px-2 py-1 bg-primary text-[10px] font-bold text-white rounded uppercase tracking-wider">Passo
+                                02</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-bold mb-1 dark:text-white flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">explore</span>
+                            Realidade
+                        </h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Conecta a teoria à prática e descobre as
+                            diferentes áreas da engenharia.</p>
+                    </div>
+                </div>
+                <div
+                    class="reveal delay-300 group relative overflow-hidden rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 p-1">
+                    <div class="aspect-video w-full rounded-lg overflow-hidden relative">
+                        <img alt="Grow Section - Industrial Engineering"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span
+                                class="px-2 py-1 bg-primary text-[10px] font-bold text-white rounded uppercase tracking-wider">Passo
+                                03</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-bold mb-1 dark:text-white flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">diversity_3</span>
+                            Comunidade
+                        </h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Crescimento conjunto através da partilha
+                            de experiências e conexões.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="px-6 py-12 bg-primary/5 border-y border-primary/10 reveal">
+            <div class="text-center">
+                <h3 class="text-xl font-bold mb-2">Junta-te à Rota</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Faz parte de uma comunidade focada no
+                    crescimento.</p>
+                <div class="flex flex-col items-center gap-3">
+                    <a href="registration.html"
+                        class="w-full max-w-[240px] bg-primary text-white font-bold py-4 px-8 rounded-xl text-sm transition-all hover:bg-primary/90 flex items-center justify-center gap-2 active:scale-95">
+                        <span class="material-symbols-outlined text-lg">bolt</span>
+                        INSCREVER AGORA
+                    </a>
+                    <!-- <p class="text-[10px] text-slate-400 uppercase tracking-tighter">Plataforma Segura e Profissional</p> -->
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <footer class="pb-10 pt-6 px-4">
+        <div class="flex flex-col items-center gap-6">
+            <div class="flex items-center gap-4">
+
+                <!-- WhatsApp -->
+                <a class="w-12 h-12 flex items-center justify-center rounded-xl 
+               bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 
+               text-slate-700 dark:text-slate-300 hover:text-primary transition-colors"
+                    href="https://wa.me/244937255243?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20Rota360.">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                </a>
+
+                <!-- Instagram -->
+                <a class="w-12 h-12 flex items-center justify-center rounded-xl 
+               bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 
+               text-slate-700 dark:text-slate-300 hover:text-primary transition-colors"
+                    href="https://www.instagram.com/eng360/">
+                    <i class="fa-brands fa-instagram text-2xl"></i>
+                </a>
+
+                <!-- Mantém este -->
+                <a class="w-12 h-12 flex items-center justify-center rounded-xl 
+               bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 
+               text-slate-700 dark:text-slate-300 hover:text-primary transition-colors" href="tel:+244937255243">
+                    <span class="material-symbols-outlined text-2xl">call</span>
+                </a>
+
+            </div>
+
+            <div class="text-center">
+                <p class="text-xs text-slate-500 dark:text-slate-500 font-light">
+                    © 2026 Rota Eng360. Todos os Direitos Reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <div class="h-8"></div>
+
+    <script>
+        // Scroll Animation Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
+</body>
+
+</html>
